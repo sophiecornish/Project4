@@ -101,26 +101,20 @@ const userData = [
   {
     username: 'Rob',
     email: 'rob.levy@email.com',
-    password: 'pass',
-    isAdmin: false
+    password: 'pass'
   }, {
     username: 'Max',
     email: 'max@email.com',
-    password: 'pass',
-    isAdmin: false
+    password: 'pass'
   }
 ];
 
 const stockItemsData = [
   {
-    username: 'Rob',
-    email: 'rob.levy@email.com',
-    password: 'pass',
-    isAdmin: false
-  }, {
-    username: 'Max',
-    email: 'max@email.com',
-    password: 'pass',
-    isAdmin: false
+    product: {type: mongoose.Schema.ObjectId, ref: 'Product'},
+    quantity: Number,
+    date: Date,
+    pricePaid: Number,
+    completed: Boolean
   }
 ];
