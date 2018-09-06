@@ -23,7 +23,7 @@ function productsUpdate(req, res, next) {
 function productsCreate(req, res, next) {
   console.log('req.body is', req.body);
   Product.create(req.body)
-    .then(film => res.json(film))
+    .then(product => res.json(product))
     .catch(next);
 }
 
