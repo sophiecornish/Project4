@@ -13,7 +13,8 @@ Router.route('/products')
   .post(productsController.create);
 
 Router.route('/products/:id')
-  .get(productsController.show);
+  .get(productsController.show)
+  .put(productsController.update);
 
 
 module.exports = Router;

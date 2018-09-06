@@ -9,7 +9,15 @@ function productsIndex(req, res, next) {
 function productsShow(req, res, next) {
   Product.findById(req.params.id)
     .then(product => res.json(product))
-    .catch(next)
+    .catch(next);
+}
+
+function productsUpdate(req, res, next) {
+  Product.findById(req.params.id)
+    .then(product => product.set(req.body))
+    .then(product => product.save())
+    .then(product => res.json(product))
+    .catch(next);
 }
 
 function productsCreate(req, res, next) {
@@ -20,8 +28,11 @@ function productsCreate(req, res, next) {
 }
 
 
+
+
 module.exports =  {
   index: productsIndex,
   create: productsCreate,
-  show: productsShow
+  show: productsShow,
+  update: productsUpdate
 };
