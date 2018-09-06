@@ -14,7 +14,8 @@ Router.route('/products')
 
 Router.route('/products/:id')
   .get(productsController.show)
-  .put(productsController.update);
+  .put(productsController.update)
+  .delete(productsController.delete);
 
 
 module.exports = Router;

@@ -27,6 +27,12 @@ function productsCreate(req, res, next) {
     .catch(next);
 }
 
+function productsDelete(req, res, next) {
+  Product.findById(req.params.id)
+    .then(product => product.remove())
+    .then(() => res.sendStatus(204)) // NO CONTENT
+    .catch(next);
+}
 
 
 
@@ -34,5 +40,6 @@ module.exports =  {
   index: productsIndex,
   create: productsCreate,
   show: productsShow,
-  update: productsUpdate
+  update: productsUpdate,
+  delete: productsDelete
 };
