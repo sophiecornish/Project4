@@ -1,4 +1,4 @@
-const mongoose = require('require');
+const mongoose = require('mongoose');
 const Product = require('../models/product');
 const User = require('../models/user');
 const { dbURI } = require('../config/environment');
@@ -47,7 +47,8 @@ const productData = [
     gender: 'women\'s',
     description: 'Made from smooth cotton jersey, this T-shirt is reimagined in an asymmetric shape. Intentionally cut with sleeves that are uneven, it is completed with a high neck and comfortable kimono sleeves.',
     primaryImgUrl: 'https://lp.cosstores.com/app001prod?set=source[01_0667819_003_001],type[ECOMLOOK],device[hdpi],quality[80],ImageVersion[2018082]&call=url[file:/product/main]',
-    imgUrl: ['https://lp.cosstores.com/app001prod?set=source[01_0667819_003_003],type[ECOMLOOK],device[hdpi],quality[80],ImageVersion[2018082]&call=url[file:/product/main]','https://lp.cosstores.com/app001prod?set=source[01_0667819_003_002],type[ECOMLOOK],device[hdpi],quality[80],ImageVersion[2018082]&call=url[file:/product/main]','https://lp.cosstores.com/app001prod?set=source[01_0667819_003_002],type[ECOMLOOK],device[hdpi],quality[80],ImageVersion[2018082]&call=url[file:/product/zoom]', 'https://lp.cosstores.com/app001prod?set=source[02_0667819_003_001],type[PRODUCT],device[hdpi],quality[80],ImageVersion[2018082]&call=url[file:/product/zoom]'],
+    imgUrl: ['https://lp.cosstores.com/app001prod?set=source[01_0667819_003_003],type[ECOMLOOK],device[hdpi],quality[80],ImageVersion[2018082]&call=url[file:/product/main]','https://lp.cosstores.com/app001prod?set=source[01_0667819_003_002],type[ECOMLOOK],device[hdpi],quality[80],ImageVersion[2018082]&call=url[file:/product/main]',
+      'https://lp.cosstores.com/app001prod?set=source[01_0667819_003_002],type[ECOMLOOK],device[hdpi],quality[80],ImageVersion[2018082]&call=url[file:/product/zoom]', 'https://lp.cosstores.com/app001prod?set=source[02_0667819_003_001],type[PRODUCT],device[hdpi],quality[80],ImageVersion[2018082]&call=url[file:/product/zoom]'],
     quantityAvailable: 40
   },{
     product: 'COLOUR-BLOCK A-LINE SKIRT',
@@ -109,12 +110,12 @@ const userData = [
   }
 ];
 
-const stockItemsData = [
-  {
-    product: {type: mongoose.Schema.ObjectId, ref: 'Product'},
-    quantity: Number,
-    date: Date,
-    pricePaid: Number,
-    completed: Boolean
-  }
-];
+Product.collection.drop();
+User.collection.drop();
+User.create(userData)
+  .then(users => {
+    console.log(`created ${users.length} users`);
+    return Product.create(productData);
+  })
+  .catch(err => console.log(err))
+  .finally(() => mongoose.connection.close());
