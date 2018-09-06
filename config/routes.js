@@ -9,7 +9,11 @@ Router.route('/')
   });
 
 Router.route('/products')
-  .get(productsController.index);
+  .get(productsController.index)
+  .post(productsController.create);
+
+Router.route('/products/:id')
+  .get(productsController.show);
 
 
 module.exports = Router;
