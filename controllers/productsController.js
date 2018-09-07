@@ -13,8 +13,13 @@ function productsShow(req, res, next) {
 }
 
 function productsUpdate(req, res, next) {
+  console.log('req.params.id is', req.params.id);
   Product.findById(req.params.id)
-    .then(product => product.set(req.body))
+    .then(product => {
+      console.log('----->',  product);
+      product.set(req.body);
+      return product;
+    })
     .then(product => product.save())
     .then(product => res.json(product))
     .catch(next);
@@ -28,6 +33,7 @@ function productsCreate(req, res, next) {
 }
 
 function productsDelete(req, res, next) {
+  console.log('req.params.id is', req.params.id);
   Product.findById(req.params.id)
     .then(product => product.remove())
     .then(() => res.sendStatus(204)) // NO CONTENT

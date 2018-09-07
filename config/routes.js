@@ -25,10 +25,12 @@ Router.route('/products')
   .get(productsController.index)
   .post(productsController.create);
 
+
 Router.route('/products/:id')
   .get(productsController.show)
   .put(productsController.update)
   .delete(productsController.delete);
+
 
 // TRANSACTIONS
 
