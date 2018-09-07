@@ -103,6 +103,10 @@ const userData = [
     username: 'Rob',
     email: 'rob.levy@email.com',
     password: 'pass'
+  },{
+    username: 'Sophie',
+    email: 'sophie@sophie.com',
+    password: 'admin'
   }, {
     username: 'Max',
     email: 'max@email.com',
