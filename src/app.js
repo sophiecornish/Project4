@@ -15,6 +15,10 @@ import ProductsShow from './components/products/Show';
 import ProductsEdit from './components/products/Edit';
 import ProductsNew from './components/products/New';
 
+//authorization
+import AuthLogin from './components/auth/Login';
+import AuthRegister from './components/auth/Register';
+
 
 class App extends React.Component {
   render(){
@@ -22,6 +26,8 @@ class App extends React.Component {
       <main>
         <Header/>
         <Switch>
+          <Route exact path="/register" component={AuthRegister} />
+          <Route exact path="/login" component={AuthLogin} />
           <Route exact path="/products" component={ProductsIndex} />
           <Route path="/products/:id/edit" component={ProductsEdit}/>
           <Route exact path="/products/new" component={ProductsNew}/>
