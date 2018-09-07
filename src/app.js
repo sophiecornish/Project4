@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 // styling
 import 'bulma/css/bulma.css';
@@ -11,6 +11,7 @@ import './scss/style.scss';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ProductsIndex from './components/products/Index';
+import ProductsShow from './components/products/Show';
 
 
 class App extends React.Component {
@@ -18,10 +19,11 @@ class App extends React.Component {
     return (
       <main>
         <Header/>
-        <Route exact path="/products" component={ProductsIndex} />
+        <Switch>
+          <Route exact path="/products" component={ProductsIndex} />
+          <Route path="/products/:id" component={ProductsShow}/>
+        </Switch>
         <Footer/>
-
-
       </main>
     );
   }

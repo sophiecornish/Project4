@@ -17,7 +17,7 @@ class ProductsIndex extends React.Component {
     return(
       <div className="columns is-multiline">
         { this.state.products.map(product =>
-          <Link to={`/producs/${product._id}`} key={product._id}
+          <Link to={`/products/${product._id}`} key={product._id}
             className="column is-3 card">
             <h3 className="title is-3">{product.product}</h3>
             <img src={ product.primaryImgUrl }/>

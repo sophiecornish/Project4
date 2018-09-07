@@ -32,6 +32,9 @@ Router.route('/products/:id')
 
 // TRANSACTIONS
 
+Router.route('/users/:id/basket')
+  .get(transactionsController.userBasket);
+
 Router.route('/transactions')
   .get(transactionsController.index)
   .post(transactionsController.create);

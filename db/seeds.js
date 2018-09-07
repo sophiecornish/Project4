@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Product = require('../models/product');
 const User = require('../models/user');
+const Transaction = require('../models/transaction');
 const { dbURI } = require('../config/environment');
 mongoose.Promise = require('bluebird');
 mongoose.connect(dbURI);
@@ -114,12 +115,42 @@ const userData = [
   }
 ];
 
+const transactionsData = [
+  {
+    quantity: 12,
+    pricePaid: 65,
+    completed: true
+  },
+  {
+    quantity: 3,
+    pricePaid: 120,
+    completed: false
+  },{
+    quantity: 1,
+    pricePaid: 79,
+    completed: false
+  }
+];
+
+let _users;
+
 Product.collection.drop();
 User.collection.drop();
+Transaction.collection.drop();
 User.create(userData)
   .then(users => {
+    _users = users;
     console.log(`created ${users.length} users`);
     return Product.create(productData);
+  })
+  .then(products => {
+    console.log(`created ${products.length} products`);
+    transactionsData[0].product = products[0]._id;
+    transactionsData[0].user = _users[0]._id;
+    return Transaction.create(transactionsData);
+  })
+  .then(transactions => {
+    console.log(`created ${transactions.length} transactions`);
   })
   .catch(err => console.log(err))
   .finally(() => mongoose.connection.close());
