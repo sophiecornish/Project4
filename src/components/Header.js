@@ -2,10 +2,10 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import Auth from '../lib/Auth';
 import SearchBar from './common/SearchBar';
+import WomensDropdown from './common/WomensDropdown';
 
 import axios from 'axios';
 import Options from '../lib/Options';
-import FilterSideBar from './common/FilterSidebar';
 import FilterSelect from './common/FilterSelect';
 
 
@@ -66,7 +66,8 @@ class Header extends React.Component {
             <Link className="navbar-item" to="/">HOME</Link>
             <Link className="navbar-item" to="/products">BROWSE</Link>
             <Link className="navbar-item" to="/products/new">ADD A PRODUCT</Link>
-            <Link className="navbar-item" to="/products/filter/skirts">WOMENS</Link>
+            <WomensDropdown/>
+            {/* <Link className="navbar-item" to="/products/filter/skirts">WOMENS</Link> */}
             <Link className="navbar-item" to="/products">MENS</Link>
 
             {!Auth.isAuthenticated() && <Link className="navbar-item" to="/register">SIGN UP</Link>}

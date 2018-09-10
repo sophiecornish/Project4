@@ -5,7 +5,7 @@ import Sorter from '../common/Sorter';
 import Options from '../../lib/Options';
 import _ from 'lodash';
 
-import FilterSideBar from '../common/FilterSidebar';
+
 
 
 class ProductsIndex extends React.Component {
@@ -15,21 +15,6 @@ class ProductsIndex extends React.Component {
     sortOptions: [
       { value: 'price|asc', label: 'Lowest Price'},
       { value: 'price|desc', label: 'Highest Price'}
-    ],
-    filterOptions: [
-      { label: 'Men\'s', value: 'Men\'s', active: true },
-      { label: 'Women\'s', value: 'Women\'s', active: true },
-      {label: 'Dresses', value: 'Dresses', active: true},
-      {label: 'Knitwear', value: 'Knitwear', active: true},
-      {label: 'Coats and Jackets', value: 'Coats and Jackets', active: true},
-      {label: 'Trousers', value: 'Trousers', active: true},
-      {label: 'Tops', value: 'Tops', active: true},
-      {label: 'Tshirts', value: 'Tshirts', active: true},
-      {label: 'Skirts', value: 'Skirts', active: true},
-      {label: 'Knitwear', value: 'Knitwear', active: true},
-      {label: 'Coats and Jackets', value: 'Coats and Jackets', active: true},
-      {label: 'Trousers', value: 'Trousers', active: true}
-
     ]
   }
 
@@ -74,44 +59,6 @@ class ProductsIndex extends React.Component {
       .then(res => this.setState({ products: res.data }));
   }
 
-  // filterByOptions = (products) => {
-  //   console.log('products is (on arrival)', products);
-  //   console.log('products after function is', products.filter(product =>
-  //     this.state.filterOptions.some(option => {
-  //       return option.active && product.gender;
-  //     })
-  //   ));
-  //   return products.filter(product =>
-  //     this.state.filterOptions.some(option => {
-  //       return option.active && product.gender;
-  //     })
-  //   );
-  // }
-  //
-  // toggleSidebar = () => {
-  //   const showSideBar = !this.state.showSideBar;
-  //   this.setState({ showSideBar });
-  // }
-
-  // handleFilterOptionChange = (event) => {
-  //   const filterOptions = this.state.filterOptions.slice();
-  //   console.log('FILTER OPTIONS -->', filterOptions);
-  //   filterOptions.forEach(option => {
-  //     if(option.value === event.target.name) {
-  //       option.active = event.target.checked;
-  //     }
-  //   });
-  //   this.setState({ filterOptions });
-  // }
-  //
-  // handleSelectAll = (event) => {
-  //   const filterOptions = this.state.filterOptions.slice();
-  //   // Set the 'active' of every filterOption
-  //   filterOptions.forEach(option => {
-  //     option.active = event.target.checked;
-  //   });
-  //   this.setState({ filterOptions });
-  // }
 
 
 
