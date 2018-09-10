@@ -12,7 +12,6 @@ import FilterSelect from './common/FilterSelect';
 class Header extends React.Component {
   state = {
     products: []
-
   }
 
     handleLogout = () => {
@@ -60,24 +59,14 @@ class Header extends React.Component {
 
     return(
       <section className = "columns">
-        {this.state.showSideBar &&
-      <aside className="column is-2">
-        <FilterSideBar options={this.state.filterOptions}
-          handleChange={this.handleFilterOptionChange}
-          handleSelectAll={this.handleSelectAll}
-        />
-      </aside>
-        }
-        <div className="column"
-          style={{maxWidth: 60, backgroundColor: 'black', zIndex: 2}}
-          onClick={this.toggleSidebar}
-        ></div>
+
+
         <main className={'column ' + this.state.showSideBar ? 'is-10' : 'is-12'}>
           <header className="navbar">
             <Link className="navbar-item" to="/">HOME</Link>
             <Link className="navbar-item" to="/products">BROWSE</Link>
             <Link className="navbar-item" to="/products/new">ADD A PRODUCT</Link>
-            <Link className="navbar-item" to="/products">WOMENS</Link>
+            <Link className="navbar-item" to="/products/filter/skirts">WOMENS</Link>
             <Link className="navbar-item" to="/products">MENS</Link>
 
             {!Auth.isAuthenticated() && <Link className="navbar-item" to="/register">SIGN UP</Link>}
@@ -90,7 +79,6 @@ class Header extends React.Component {
         </main>
       </section>
     );
-
   }
 }
 

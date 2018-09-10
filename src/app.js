@@ -31,6 +31,7 @@ class App extends React.Component {
           <Route exact path="/products" component={ProductsIndex} />
           <Route path="/products/:id/edit" component={ProductsEdit}/>
           <Route exact path="/products/new" component={ProductsNew}/>
+          <Route path="/products/filter/:searchTerm" component={ProductsIndex}/>
           <Route path="/products/:id" component={ProductsShow}/>
         </Switch>
         <Footer/>

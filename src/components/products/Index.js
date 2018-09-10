@@ -34,10 +34,28 @@ class ProductsIndex extends React.Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount');
     axios.get('/api/products')
       .then(res => this.setState({products: res.data }));
   }
+
+  componentDidUpdate() {
+    console.log('searchTerm is', this.props.match.params.searchTerm);
+    const searchTerm = this.props.match.params.searchTerm;
+    if (this.state.searchTerm !== searchTerm) {
+      this.setState({searchTerm: searchTerm });
+    }
+  }
+
+  filterProducts(products) {
+    if (this.state.searchTerm) {
+      return products.filter(product =>
+        product.category.toLowerCase() === this.state.searchTerm.toLowerCase()
+      );
+    } else {
+      return products;
+    }
+  }
+
 
   sortProducts = (products) => {
     const [ fieldName, direction ] = this.state.sortString.split('|');
@@ -56,75 +74,64 @@ class ProductsIndex extends React.Component {
       .then(res => this.setState({ products: res.data }));
   }
 
-  filterByOptions = (products) => {
-    console.log('products is (on arrival)', products);
-    console.log('products after function is', products.filter(product =>
-      this.state.filterOptions.some(option => {
-        return option.active && product.gender;
-      })
-    ));
-    return products.filter(product =>
-      this.state.filterOptions.some(option => {
-        return option.active && product.gender;
-      })
-    );
-  }
+  // filterByOptions = (products) => {
+  //   console.log('products is (on arrival)', products);
+  //   console.log('products after function is', products.filter(product =>
+  //     this.state.filterOptions.some(option => {
+  //       return option.active && product.gender;
+  //     })
+  //   ));
+  //   return products.filter(product =>
+  //     this.state.filterOptions.some(option => {
+  //       return option.active && product.gender;
+  //     })
+  //   );
+  // }
+  //
+  // toggleSidebar = () => {
+  //   const showSideBar = !this.state.showSideBar;
+  //   this.setState({ showSideBar });
+  // }
 
-  toggleSidebar = () => {
-    const showSideBar = !this.state.showSideBar;
-    this.setState({ showSideBar });
-  }
-
-  handleFilterOptionChange = (event) => {
-    const filterOptions = this.state.filterOptions.slice();
-    console.log('FILTER OPTIONS -->', filterOptions);
-    filterOptions.forEach(option => {
-      if(option.value === event.target.name) {
-        option.active = event.target.checked;
-      }
-    });
-    this.setState({ filterOptions });
-  }
-
-  handleSelectAll = (event) => {
-    const filterOptions = this.state.filterOptions.slice();
-    // Set the 'active' of every filterOption
-    filterOptions.forEach(option => {
-      option.active = event.target.checked;
-    });
-    this.setState({ filterOptions });
-  }
+  // handleFilterOptionChange = (event) => {
+  //   const filterOptions = this.state.filterOptions.slice();
+  //   console.log('FILTER OPTIONS -->', filterOptions);
+  //   filterOptions.forEach(option => {
+  //     if(option.value === event.target.name) {
+  //       option.active = event.target.checked;
+  //     }
+  //   });
+  //   this.setState({ filterOptions });
+  // }
+  //
+  // handleSelectAll = (event) => {
+  //   const filterOptions = this.state.filterOptions.slice();
+  //   // Set the 'active' of every filterOption
+  //   filterOptions.forEach(option => {
+  //     option.active = event.target.checked;
+  //   });
+  //   this.setState({ filterOptions });
+  // }
 
 
 
   render() {
     const products = this.state.products || [];
     const sorted = this.sortProducts(products);
+    const filtered = this.filterProducts(sorted);
     // const filteredByGender = this.filterByOptions(sorted);
     // const filteredByGenderAndSearch = this.filterBySearch(filteredByGender);
 
     return(
       <section className = "columns">
-        {this.state.showSideBar &&
-      <aside className="column is-2">
-        <FilterSideBar options={this.state.filterOptions}
-          handleChange={this.handleFilterOptionChange}
-          handleSelectAll={this.handleSelectAll}
-        />
-      </aside>
-        }
-        <div className="column"
-          style={{maxWidth: 60, backgroundColor: 'black', zIndex: 2}}
-          onClick={this.toggleSidebar}
-        ></div>
-        <main className={'column ' + this.state.showSideBar ? 'is-10' : 'is-12'}>
+        <main className="column">
           <div className="column is-12">
             <Sorter
               defaultValue={this.state.sortString}
               options={this.state.sortOptions}
               handleChange={this.handleSortChange}/>
             <div className="columns is-multiline">
-              { sorted.map(product =>
+              { filtered.map(product =>
                 <div className="column is-3" key={product._id}>
                   <button productid={product._id} className="delete" onClick={this.handleDelete}></button>
                   <Link to={`/products/${product._id}`}>
