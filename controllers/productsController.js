@@ -36,7 +36,8 @@ function productsDelete(req, res, next) {
   console.log('req.params.id is', req.params.id);
   Product.findById(req.params.id)
     .then(product => product.remove())
-    .then(() => res.sendStatus(204)) // NO CONTENT
+    .then(() => Product.find())
+    .then(products => res.json(products))
     .catch(next);
 }
 
