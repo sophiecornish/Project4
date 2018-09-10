@@ -35,6 +35,7 @@ class ProductsIndex extends React.Component {
     if (this.state.searchTerm) {
       return products.filter(product =>
         product.category.toLowerCase() === this.state.searchTerm.toLowerCase()
+        // && product.gender === 'Men\'s`'
       );
     } else {
       return products;

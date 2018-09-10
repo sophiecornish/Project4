@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import Auth from '../lib/Auth';
 import SearchBar from './common/SearchBar';
 import WomensDropdown from './common/WomensDropdown';
+import MensDropdown from './common/MensDropdown';
 
 import axios from 'axios';
 import Options from '../lib/Options';
@@ -68,7 +69,7 @@ class Header extends React.Component {
             <Link className="navbar-item" to="/products/new">ADD A PRODUCT</Link>
             <WomensDropdown/>
             {/* <Link className="navbar-item" to="/products/filter/skirts">WOMENS</Link> */}
-            <Link className="navbar-item" to="/products">MENS</Link>
+            <MensDropdown/>
 
             {!Auth.isAuthenticated() && <Link className="navbar-item" to="/register">SIGN UP</Link>}
             {!Auth.isAuthenticated() && <Link className="navbar-item" to="/login">LOGIN</Link>}

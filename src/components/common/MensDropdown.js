@@ -1,17 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function WomensDropdown() {
+function MensDropdown() {
 
   return (
     <div className="dropdown">
-      <button className="dropbtn">WOMEN</button>
+      <button className="dropbtn">MEN</button>
       <div className="dropdown-content">
         <Link to="/products/">All</Link>
-        <Link to="/products/filter/skirts">Skirts</Link>
         <Link to="/products/filter/knitwear">Knitwear</Link>
         <Link to="/products/filter/jeans">Jeans</Link>
-        <Link to="/products/filter/dresses">Dresses</Link>
         <Link to="/products/filter/coats-and-jackets">Coats and Jackets</Link>
         <Link to="/products/filter/tops">Tops</Link>
 
@@ -21,4 +19,4 @@ function WomensDropdown() {
   );
 }
 
-export default WomensDropdown;
+export default MensDropdown;
