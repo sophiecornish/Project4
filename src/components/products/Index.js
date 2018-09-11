@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Sorter from '../common/Sorter';
 import Options from '../../lib/Options';
 import _ from 'lodash';
+import Auth from '../../lib/Auth';
 
 
 
@@ -33,9 +34,12 @@ class ProductsIndex extends React.Component {
 
   filterProducts(products) {
     if (this.state.searchTerm) {
+      const endSearch = this.state.searchTerm.split('&');
+      console.log('endSearch is', endSearch);
+      console.log('products is', products);
       return products.filter(product =>
-        product.category.toLowerCase() === this.state.searchTerm.toLowerCase()
-        // && product.gender === 'Men\'s`'
+        product.category.toLowerCase() === endSearch[1].toLowerCase()
+        && product.gender === endSearch[0].toLowerCase()
       );
     } else {
       return products;
@@ -67,6 +71,9 @@ class ProductsIndex extends React.Component {
     const products = this.state.products || [];
     const sorted = this.sortProducts(products);
     const filtered = this.filterProducts(sorted);
+    // const filteredMens = this.filterProductsMens(sorted);
+    // const filteredWomens = this.filterProductsWomens(sorted);
+
     // const filteredByGender = this.filterByOptions(sorted);
     // const filteredByGenderAndSearch = this.filterBySearch(filteredByGender);
 
@@ -81,7 +88,7 @@ class ProductsIndex extends React.Component {
             <div className="columns is-multiline">
               { filtered.map(product =>
                 <div className="column is-3" key={product._id}>
-                  <button productid={product._id} className="delete" onClick={this.handleDelete}></button>
+                  {Auth.isAuthenticated() && Auth.getPayload().isAdmin &&  <button productid={product._id} className="delete" onClick={this.handleDelete}></button>}
                   <Link to={`/products/${product._id}`}>
                     <h3 className="title is-3">{product.product}</h3>
                     <img src={ product.primaryImgUrl }/>

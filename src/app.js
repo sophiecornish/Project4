@@ -8,6 +8,7 @@ import './scss/style.scss';
 
 
 // components
+import Home from './components/Home';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ProductsIndex from './components/products/Index';
@@ -33,6 +34,7 @@ class App extends React.Component {
           <Route exact path="/products/new" component={ProductsNew}/>
           <Route path="/products/filter/:searchTerm" component={ProductsIndex}/>
           <Route path="/products/:id" component={ProductsShow}/>
+          <Route exact path="/" component={Home}/>
         </Switch>
         <Footer/>
       </main>

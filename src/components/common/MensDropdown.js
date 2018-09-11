@@ -8,10 +8,10 @@ function MensDropdown() {
       <button className="dropbtn">MEN</button>
       <div className="dropdown-content">
         <Link to="/products/">All</Link>
-        <Link to="/products/filter/knitwear">Knitwear</Link>
-        <Link to="/products/filter/jeans">Jeans</Link>
-        <Link to="/products/filter/coats-and-jackets">Coats and Jackets</Link>
-        <Link to="/products/filter/tops">Tops</Link>
+        <Link to="/products/filter/mens&knitwear">Knitwear</Link>
+        <Link to="/products/filter/mens&jeans">Jeans</Link>
+        <Link to="/products/filter/mens&coats-and-jackets">Coats and Jackets</Link>
+        <Link to="/products/filter/mens&tops">Tops</Link>
 
 
       </div>

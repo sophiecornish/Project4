@@ -64,9 +64,9 @@ class Header extends React.Component {
 
         <main className={'column ' + this.state.showSideBar ? 'is-10' : 'is-12'}>
           <header className="navbar">
-            <Link className="navbar-item" to="/">HOME</Link>
+            <Link className="navbar-item" to="/"> <img className="logo" src = 'https://wl3-cdn.landsec.com/sites/default/files/images/shops/logos/cos_0.png'></img></Link>
             <Link className="navbar-item" to="/products">BROWSE</Link>
-            <Link className="navbar-item" to="/products/new">ADD A PRODUCT</Link>
+            {Auth.isAuthenticated() && Auth.getPayload().isAdmin &&<Link className="navbar-item" to="/products/new">ADD A PRODUCT</Link>}
             <WomensDropdown/>
             {/* <Link className="navbar-item" to="/products/filter/skirts">WOMENS</Link> */}
             <MensDropdown/>
