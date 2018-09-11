@@ -35,6 +35,8 @@ module.exports = {
     ]
   },
   devServer: {
+    contentBase: ['src'],
+    watchContentBase: true,
     historyApiFallback: true,
     hot: true,
     inline: true,
