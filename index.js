@@ -13,8 +13,10 @@ app.use(bodyParser.json());
 app.use(morgan('dev')); //morgan is a logger - logs requests we receive
 
 
-app.use('/api', Router);
+app.use(express.static(`${__dirname}/public`));
 
+app.use('/api', Router);
+app.get('/*', (req, res) => res.sendFile(`${__dirname}/public/index.html`));
 
 
 // error handler must go after Router!
