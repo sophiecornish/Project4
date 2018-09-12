@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function MensDropdown() {
 
   return (
-    <div className="dropdown">
+    <div className="dropdown navbar-item">
       <button className="dropbtn navbar-item">MEN</button>
       <div className="dropdown-content">
         <Link to="/products/filter/mens&knitwear">Knitwear</Link>

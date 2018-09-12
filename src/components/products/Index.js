@@ -83,9 +83,10 @@ class ProductsIndex extends React.Component {
           <div className="column is-12">
             <Link to="/products/filter/womens&jeans">
               <level className="columns">
-                <div className="column is-4 has-text-left indexLeft">
+                <div className="column is-4 has-text-left indexLeft indexPara">
                   <h2 className="title is-2">The jeans guide</h2>
-All our styles in one place, with an array of washes to choose from. Find a new everyday favourite.</div>
+                  <p>
+All our styles in one place, with an array of washes to choose from. Find a new everyday favourite.</p></div>
                 <div className="column is-8">
                   <img className="indexImage" src='https://lp.cosstores.com/app001prod?set=source[01_0648659_001_004],type[ECOMLOOK],device[hdpi],quality[80],ImageVersion[2018083]&call=url[file:/product/main]'/>
 

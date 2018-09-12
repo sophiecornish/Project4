@@ -74,7 +74,7 @@ render() {
       <MensDropdown className="navbar-item"/>
 
       <div className="navbar-end">
-        <div><SearchBar toggleSearch={this.state.toggleSearch} handleToggleSearch={this.handleToggleSearch} handleChange={this.handleSearchChange } searchTerm={ this.state.searchTerm } filterSearch={this.filterBySearch}/>
+        <div className="searchContainer"><SearchBar toggleSearch={this.state.toggleSearch} handleToggleSearch={this.handleToggleSearch} handleChange={this.handleSearchChange } searchTerm={ this.state.searchTerm } filterSearch={this.filterBySearch}/>
           {this.state.searchTerm && <FilterSelect products={filterSearch}/>}
         </div>
         {!Auth.isAuthenticated() && <Link className="navbar-item" to="/register">SIGN UP</Link>}
