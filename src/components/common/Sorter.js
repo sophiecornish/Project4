@@ -3,8 +3,7 @@ import React from 'react';
 
 const Sorter = ({ defaultValue, handleChange, options }) => {
   return (
-    <div className="field">
-      <label className="label">Sort By /^</label>
+    <div className="field sorter">
       <div className="select">
         <select onChange={handleChange} defaultValue={defaultValue}>
           {options.map(option =>

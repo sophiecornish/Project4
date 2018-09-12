@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Auth from '../../lib/Auth';
 
 class ProductsShow extends React.Component {
   state = {
@@ -21,9 +22,10 @@ class ProductsShow extends React.Component {
             {product.colour && <h3 className="subtitle is-3"> {product.price}</h3>}
             <img src={product.imgUrl}></img>
             <p> {product.description}</p>
-            <div className="column is-half">
+            {Auth.isAuthenticated() && Auth.getPayload().isAdmin &&   <div className="column is-half">
               <Link to={`/products/${product._id}/edit`} className="button is-rounded">Edit</Link>
             </div>
+            }
           </div>
         }
       </section>
