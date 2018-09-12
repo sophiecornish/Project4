@@ -71,11 +71,6 @@ class ProductsIndex extends React.Component {
     const products = this.state.products || [];
     const sorted = this.sortProducts(products);
     const filtered = this.filterProducts(sorted);
-    // const filteredMens = this.filterProductsMens(sorted);
-    // const filteredWomens = this.filterProductsWomens(sorted);
-
-    // const filteredByGender = this.filterByOptions(sorted);
-    // const filteredByGenderAndSearch = this.filterBySearch(filteredByGender);
 
     return(
       <section className = "columns is-centered">
